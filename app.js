@@ -1,8 +1,7 @@
 const express = require('express');
 
 // Routers
-const { usersRouter } = require('./routes/users.routes');
-const { postsRouter } = require('./routes/posts.routes');
+const { registrationsRouter } = require('./routes/registrations.routes');
 
 // Init our Express app
 const app = express();
@@ -10,9 +9,8 @@ const app = express();
 // Enable Express app to receive JSON data
 app.use(express.json());
 
-// Define endpoints
-app.use('/users', usersRouter);
-app.use('/posts', postsRouter);
+// Define endpoints, this appear in link on Postman in accordance verb (Get, Post, Put, Patch, Delete)
+app.use('/', registrationsRouter);
 
 // Catch non-existing endpoints
 app.all('*', (req, res) => {

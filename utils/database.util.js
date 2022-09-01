@@ -7,7 +7,7 @@ const db = new Sequelize({
 	username: 'postgres',
 	password: 'turmanyay123L',
 	port: 5432,
-	database: 'blogs',
+	database: 'registrationsdb',
 	logging: false,
 });
 

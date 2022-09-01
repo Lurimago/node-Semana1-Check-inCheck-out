@@ -1,23 +1,19 @@
 const { db, DataTypes } = require('../utils/database.util');
 
-const Post = db.define('post', {
+const Registration = db.define('registration', {
 	id: {
 		type: DataTypes.INTEGER,
 		primaryKey: true,
 		autoIncrement: true,
 		allowNull: false,
 	},
-	title: {
-		type: DataTypes.STRING,
+	entranceTime: {
+		type: DataTypes.DATE,
 		allowNull: false,
 	},
-	content: {
+	exitTime: {
 		type: DataTypes.STRING,
-		allowNull: false,
-	},
-	userId: {
-		type: DataTypes.INTEGER,
-		allowNull: false,
+		allowNull: true,
 	},
 	status: {
 		type: DataTypes.STRING,
@@ -26,4 +22,4 @@ const Post = db.define('post', {
 	},
 });
 
-module.exports = { Post };
+module.exports = { Registration };
