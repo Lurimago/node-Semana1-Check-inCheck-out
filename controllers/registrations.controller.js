@@ -57,21 +57,7 @@ const createRegistration = async (req, res) => {
 const updateRegistration = async (req, res) => {
 	try {
 		const { exitTime, status } = req.body;
-		const { id } = req.params;
-
-		// Check if the user exists before update
-		const registration = await Registration.findOne({ where: { id } });
-
-		// If user doesn't exist, send error message
-		if (!registration) {
-			return res.status(404).json({
-				status: 'error',
-				message: 'Registration not found',
-			});
-		}
-
-		// Method 1: Update by using the model
-		// await User.update({ name }, { where: { id } });
+		const { registration } = req;
 
 		// Method 2: Update using a model's instance
 		await registration.update({ exitTime, status });
@@ -87,28 +73,8 @@ const updateRegistration = async (req, res) => {
 
 const deleteRegistration = async (req, res) => {
 	try {
-		const { id } = req.params;
-
-		// Check if user exists before deletion
-		const registration = await Registration.findOne({ where: { id } });
-
-		// If user doesn't exist, send error message
-		if (!registration) {
-			return res.status(404).json({
-				status: 'error',
-				message: 'Registration not found',
-			});
-		}
-
-		// If user exist, remove it from db
-
-		// Method 1: Delete by using the model
-		// User.destroy({ where: { id } })
-
-		// Method 2: Delete by using the model's instance
-		// await user.destroy();
-
-		// Method 3: Soft delete
+		const { registration } = req;
+		// Soft delete
 		await registration.update({ status: 'cancelled' });
 
 		res.status(204).json({ status: 'success' });
